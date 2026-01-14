@@ -2,29 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=1.1">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-    <header>
-        <h1>Daniel Thörnsjö</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Start</a></li>
-                <li><a href="/">Portfolio</a></li>
-                <li><a href="/">Kontakt</a></li>
-            </ul>
-        </nav>
-        <div class="burger">
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-    </header>
+  <header>
+    <h1>Daniel Thörnsjö</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Start</a></li>
+        <li><a href="/">Portfolio</a></li>
+        <li><a href="/">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="burger">
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+  </header>
+  <main>
+    <section id="hero">
+      <pre id="json">
+import express from 'express';
+const app = express();
+const port = process.env.PORT || 5000;
 
-    <script src="assets/js/script.js"></script>
+app.use(express.json());
+
+app.get('/api/v1/developer', (req, res) => {
+  res.status(200).json({
+    name: 'Daniel Thörnsjö',
+    role: 'Fullstack',
+    message: 'Hire me!'
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT})
+});
+</pre>
+      <h1>HEJ, JAG ÄR DANIEL.</h1>
+      <h2>Junior fullstackutvecklare som bygger skalbara webbapplikationer med slutanvändaren i fokus.</h2>
+      <div id="btn-wrapper">
+        <button>Se projekt</button>
+        <button>Läs om mig</button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="assets/js/script.js"></script>
 </body>
 
 </html>
