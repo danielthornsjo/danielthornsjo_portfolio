@@ -12,6 +12,10 @@
   --accent: #F4F4F4;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   background-color: var(--background);
@@ -21,10 +25,12 @@ body {
   }
 
   header {
+    position: sticky;
+    top: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 1rem;
     background-color: var(--background);
     color: var(--accent);
     z-index: 10;
@@ -33,7 +39,7 @@ body {
       font-weight: 400;
       font-size: 1.3rem;
       cursor: pointer;
-      letter-spacing: -0.5px;
+      letter-spacing: 2px;
     }
 
     nav {
@@ -172,7 +178,7 @@ body {
       gap: 1.5rem;
       z-index: 2;
 
-      button {
+      .button {
         width: 100%;
         background-color: var(--primary);
         padding: .5rem;
@@ -182,6 +188,8 @@ body {
         border: none;
         border-radius: .5rem;
         transition: all .3s ease-in-out;
+        text-align: center;
+        text-decoration: none;
 
         &:hover {
           transform: scale(1.05);
@@ -211,64 +219,71 @@ body {
       article {
         /* background-color: var(--background); */
         position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
 
         img {
-          width: 100%;
+          width: 80%;
         }
 
         header {
+          position: inherit;
           width: 100%;
           flex-direction: column;
           background-color: transparent;
 
           h3 {
-            font-size: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
             font-weight: 500;
             width: 100%;
-            text-align: center;
+            /* text-align: center; */
             color: var(--accent);
+
+            .links {
+              display: flex;
+              gap: .5rem;
+
+              i {
+                font-size: 1.2rem;
+                background-color: transparent;
+              }
+            }
           }
 
           p {
-            margin: 1rem 0;
+            margin: 0.5rem 0;
             color: var(--secondary);
             font-size: 1rem;
             letter-spacing: -.2px;
           }
 
-          .links {
-            display: flex;
-            width: 100%;
-            gap: .5rem;
 
-            .icon {
-              display: flex;
-              width: 7%;
-              background-color: blue;
-            }
-          }
         }
       }
     }
   }
 }
 
-.accordion-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease;
-  opacity: 0;
+/* Container för hela accordion-gruppen */
+.accordion {
+  width: 100%;
+  max-width: 600px;
+  /* Eller den bredd som passar din layout */
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.content-inner {
-  padding: 1rem;
+/* Individuella rader */
+.accordion-item {
+  border-bottom: 1px solid rgba(34, 211, 238, 0.1);
 }
 
-.accordion-content.active {
-  opacity: 1;
-  /* max-height sätts av JavaScript */
-}
-
+/* Själva knappen man klickar på */
 .accordion-header {
   width: 100%;
   display: flex;
@@ -276,19 +291,81 @@ body {
   align-items: center;
   background: none;
   border: none;
-  color: var(--primary);
-  padding: 1rem;
-  font-size: 1rem;
-  font-weight: 500;
+  padding: 1.2rem 0;
+  color: #22d3ee;
+  /* Din turkosa färg */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
   cursor: pointer;
-  border: 1px solid rgba(34, 211, 238, 0.1);
+  text-align: left;
+  transition: all 0.3s ease;
 }
 
+/* Hover-effekt på rubriken */
+.accordion-header:hover {
+  opacity: 0.8;
+  padding-left: 5px;
+  /* Liten rörelse åt höger vid hover */
+}
+
+/* Styla ikonerna/emojis i början av texten */
+.accordion-header span:first-child,
+.accordion-header i:first-child {
+  margin-right: 12px;
+  display: inline-block;
+  filter: grayscale(100%) opacity(0.6);
+  /* Dämpad look som standard */
+  transition: all 0.3s ease;
+}
+
+/* Styla plus-tecknet till höger */
 .icon {
+  font-size: 1.2rem;
   transition: transform 0.3s ease;
+  color: rgba(34, 211, 238, 0.5);
 }
 
+/* --- AKTIVT LÄGE (när JS lägger till .active) --- */
+
+.accordion-header.active {
+  color: #ffffff;
+  /* Texten blir vit när den är öppen för kontrast */
+}
+
+/* Ikonen "lyser upp" och får färg vid aktivt läge */
+.accordion-header.active span:first-child,
+.accordion-header.active i:first-child {
+  filter: grayscale(0%) opacity(1) drop-shadow(0 0 8px rgba(34, 211, 238, 0.6));
+  transform: scale(1.2);
+}
+
+/* Plus-tecknet roterar till ett kryss */
 .accordion-header.active .icon {
   transform: rotate(45deg);
-  /* Plustecken blir ett kryss */
+  color: #22d3ee;
+}
+
+/* --- CONTENT OCH ANIMATION --- */
+
+.accordion-content {
+  max-height: 0;
+  /* JS styr denna dynamiskt */
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+
+.accordion-content.active {
+  opacity: 1;
+}
+
+/* Innehållstexten */
+.content-inner {
+  padding: 0 0 1.5rem 2.5rem;
+  /* Indrag för att linjera med texten efter ikonen */
+  color: #a1a1aa;
+  /* En mjukare grå färg för brödtexten */
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
