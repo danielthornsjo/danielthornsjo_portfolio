@@ -19,6 +19,22 @@ function Header() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    // Inuti din Header-komponent:
+    useEffect(() => {
+        if (renderNav) {
+            // Förhindra scroll när menyn är öppen
+            document.body.style.overflow = "hidden";
+        } else {
+            // Återställ scroll när menyn stängs
+            document.body.style.overflow = "auto";
+        }
+
+        // Cleanup-funktion om komponenten avmonteras
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [renderNav]);
+
     return (
         <>
             {/* <header className="px-6 sticky bg-secondary-bg top-0 p-4 md:p-4 lg:py-4 z-10 transition duration-500 ease-in-out">
@@ -32,9 +48,9 @@ function Header() {
                 </div>
             </header> */}
             <header
-                className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-4 ${scrolled
+                className={`sticky top-0 left-0 w-full z-50 transition-all duration-300 px-6 py-4 ${scrolled
                     ? "bg-bg/80 backdrop-blur-md border-b border-white/5 py-3"
-                    : "bg-transparent py-6"
+                    : "bg-secondary-bg py-6"
                     }`}
             >
                 <div className="max-w-7xl mx-auto flex justify-between items-center">

@@ -46,14 +46,14 @@ export default function Nav({ renderNav, setRenderNav, setRotateBurger }) {
 
     return (
         <nav
-            className={`
-        fixed inset-0 lg:inset-auto h-screen lg:h-auto w-[85%] lg:w-auto 
-        bg-secondary-bg/95 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none
-        top-0 right-0 z-40
-        flex items-center justify-center 
-        ${renderNav ? "translate-x-0" : "translate-x-full"} 
-        transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-        lg:relative lg:translate-x-0 border-l border-white/10 lg:border-none shadow-2xl lg:shadow-none`}>
+            className={`fixed lg:inset-auto h-screen lg:h-auto w-[85%] lg:w-auto 
+    bg-secondary-bg/95 lg:bg-transparent backdrop-blur-xl lg:backdrop-blur-none
+    top-0 right-0 z-40
+    flex items-center justify-center 
+    ${renderNav ? "translate-x-0 visible" : "translate-x-full invisible lg:visible"} 
+    transition-all duration-500 ease-in-out
+    lg:relative lg:translate-x-0 border-l border-white/10 lg:border-none shadow-2xl lg:shadow-none`}
+        >
 
             <ul className="flex flex-col gap-10 lg:gap-8 xl:gap-12 lg:flex-row items-start lg:items-center">
                 {navItems.map((item) => {
