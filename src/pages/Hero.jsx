@@ -1,7 +1,9 @@
+import { FaChevronDown } from "react-icons/fa";
+
 function Hero() {
     return (
         <>
-            <section id="hero" className="h-screen w-full bg-secondary-bg flex flex-col justify-center px-6 mx-auto">
+            <section id="hero" className="h-screen w-full bg-secondary-bg flex flex-col justify-center mt-12 px-6 mx-auto">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-primary font-mono tracking-tighter mb-4 text-lg md:text-2xl">
                         Hej, mitt namn är
@@ -23,6 +25,12 @@ function Hero() {
                             Ladda ner CV
                         </a>
                     </div>
+                </div>
+                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-primary opacity-50 hover:opacity-100 transition-opacity">
+                    <a href="#portfolio" className="flex flex-col items-center gap-2">
+                        <span className="text-[10px] uppercase tracking-[0.3em] font-mono">Scroll</span>
+                        <i className="fa-solid fa-angles-down animate-bounce"></i>
+                    </a>
                 </div>
             </section>
         </>

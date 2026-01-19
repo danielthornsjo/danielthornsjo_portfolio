@@ -1,7 +1,5 @@
-// src/data/navItems.js
 import { FaCode, FaEnvelope, FaFolderOpen, FaHome } from "react-icons/fa";
 
-/* Mappa **namn** → komponent så att vi kan slå upp ikoner dynamiskt */
 export const iconMap = {
     FaHome,
     FaFolderOpen,

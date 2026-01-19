@@ -1,9 +1,10 @@
 import Accordion from '../components/Accordion.jsx';
 import { projectData } from '../data/projects.js';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 function Portfolio() {
     return (
-        <section id="portfolio" className="bg-secondary-bg text-white py-24 px-6">
+        <section id="portfolio" className="bg-secondary-bg text-white py-24 px-6 relative">
             <div className="max-w-7xl mx-auto">
 
                 <div className="mb-20 text-center lg:text-left">
@@ -28,6 +29,7 @@ function Portfolio() {
                                         />
                                     </div>
                                 </div>
+
                                 <div className="w-full lg:w-1/2 space-y-6">
                                     <div>
                                         <span className="text-primary font-mono text-xs">{project.tagline}</span>
@@ -45,20 +47,40 @@ function Portfolio() {
                                             </span>
                                         ))}
                                     </div>
+
                                     <div className="pt-4">
                                         <Accordion items={project.details} />
+                                    </div>
+
+                                    <div className="flex gap-6 pt-6">
+                                        {project.github && (
+                                            <a
+                                                href={project.github}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 text-sm font-mono text-gray-400 hover:text-primary transition-colors group"
+                                            >
+                                                <FaGithub className="text-xl" />
+                                                <span>Källkod</span>
+                                            </a>
+                                        )}
+                                        {project.live && (
+                                            <a
+                                                href={project.live}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 text-sm font-mono text-gray-400 hover:text-primary transition-colors group"
+                                            >
+                                                <FaExternalLinkAlt className="text-lg" />
+                                                <span>Live Demo</span>
+                                            </a>
+                                        )}
                                     </div>
                                 </div>
                             </div>
                         );
                     })}
                 </div>
-            </div>
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-primary opacity-50 hover:opacity-100 transition-opacity">
-                <a href="#portfolio" className="flex flex-col items-center gap-2">
-                    <span className="text-[10px] uppercase tracking-[0.3em] font-mono">Scroll</span>
-                    <i className="fa-solid fa-angles-down animate-bounce"></i>
-                </a>
             </div>
         </section>
     );

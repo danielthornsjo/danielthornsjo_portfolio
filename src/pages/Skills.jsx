@@ -42,7 +42,7 @@ const skillCategories = [
         category: "Design & UX/UI",
         skills: [
             { name: "Figma (Prototyping)", icon: <SiFigma className="text-[#F24E1E]" /> },
-            { name: "Användarpsykologi", icon: <BiCodeAlt /> }, // Visar förståelse för UX
+            { name: "Användarpsykologi", icon: <BiCodeAlt /> },
             { name: "Responsiv Layout", icon: <FaCss3Alt className="text-[#1572B6]" /> },
             { name: "Designspråk", icon: <FaHtml5 className="text-[#E34F26]" /> },
         ]
